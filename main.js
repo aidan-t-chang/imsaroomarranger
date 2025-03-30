@@ -1,6 +1,14 @@
 let newX = 0, newY = 0, startX = 0, startY = 0;
+let counter = 1;
 let snappingEnabled = true;
 const gridSize = 50;
+
+class Card {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+}
 
 const card = document.getElementById('card');
 
@@ -43,7 +51,6 @@ function snapToGrid() {
     card.style.left = snappedLeft + 'px';
 }
 
-
 function preSnapToGrid() {
     if (snappingEnabled) {
         snapToGrid();
@@ -56,3 +63,13 @@ toggleButton.addEventListener('click', () => {
     toggleButton.textContent = snappingEnabled ? 'Disable Snapping' : 'Enable Snapping';
     preSnapToGrid();
 });
+
+function addNewCard() {
+    const newer = document.createElement('div');
+    newer.setAttribute('id', `card_${counter}`);
+    document.getElementById('container').appendChild(newer);
+    counter++;
+
+}
+
+document.getElementById('create').addEventListener('click', addNewCard);
