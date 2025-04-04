@@ -23,8 +23,19 @@ class Card {
         
         // Add event listeners
         this.element.addEventListener('mousedown', (e) => this.mouseDown(e));
+        this.element.addEventListener('touchstart', (e) => this.touchStart(e));
+
+        // Add these methods to the Card class:
     }
     
+    touchStart(e) {
+        const touch = e.touches[0];
+        this.mouseDown({
+            clientX: touch.clientX,
+            clientY: touch.clientY,
+            preventDefault: () => e.preventDefault()
+        });
+    }
     mouseDown(e) {
         this.isDragging = true;
         activeCard = this;
@@ -126,6 +137,31 @@ function getRandomColor() {
     }
     return color;
 }
+
+function reset() {
+    const keepthesame = document.getElementById('toggleSnap').textContent;
+    document.getElementById('container').innerHTML = "";
+    create = document.createElement('button');
+    create.id = 'create';
+    create.textContent = 'Add New Card';
+    togglesnap = document.createElement('button');
+    togglesnap.id = 'toggleSnap';
+    togglesnap.textContent = keepthesame;
+    reset = document.createElement('button ');
+    reset.id = 'reset';
+    reset.textContent = 'Reset';
+    container.appendChild(create);
+    container.appendChild(togglesnap);
+    container.appendChild(reset);
+
+    newdiv = document.createElement('div');
+    newdiv.id = 'card';
+    newdiv.class = 'card';
+    newdiv.style = 'top: 450px; left: 1000px; position: absolute; z-index: 1;';
+    container.appendChild(newdiv);
+}
+
+document.getElementById('reset').addEventListener('click', reset);
 
 // Snap all cards to grid
 function snapAllToGrid() {
