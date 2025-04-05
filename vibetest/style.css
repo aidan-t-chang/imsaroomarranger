@@ -1,0 +1,38 @@
+.app-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .room-area {
+    flex: 3;
+    background-color: #f5f5f5;
+    position: relative;
+    border: 1px dashed #ccc;
+  }
+  
+  .furniture-palette {
+    flex: 1;
+    background-color: #eee;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .furniture-item {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    cursor: grab;
+    text-align: center;
+  }
+  
+  .placed-furniture {
+    position: absolute;
+    background-color: rgba(100, 149, 237, 0.7);
+    border: 1px solid #6495ed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
